@@ -1,6 +1,7 @@
 # SIGMA
 
-model_image
+<img width="3500" height="1885" alt="模型图_new_颜色调整" src="https://github.com/user-attachments/assets/c35fdde4-9b25-4e24-b087-b321b0f49509" />
+
 
 This repository provides the code and tutorials for SIGMA. The tutorials reproduce the main experiments on simulated and real spatial multi-omics datasets.
 
