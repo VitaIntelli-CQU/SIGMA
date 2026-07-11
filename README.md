@@ -59,4 +59,13 @@ The five tutorials correspond to the five datasets listed above. Each notebook i
 
 ## Citation
 
-If you use this code or datasets in your work, please cite the associated paper and the original data sources.
+If you find our code useful, please consider citing our work:
+
+```bibtex
+@article{mengSIGMA,
+  title   = {SIGMA: Signal-Guided Integration Using Gated Residual Contrastive Alignment for Spatial Multi-Omics},
+  author  = {Chunyang Meng and Xiang Ao and Anping Xiong and Yi Jiang and Wei Cheng and Yanbing Xiao and Yuansong Zeng and Zheng Wang},
+  journal = {Under Review},
+  year    = {2026}
+}
+```
