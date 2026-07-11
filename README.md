@@ -65,7 +65,7 @@ If you find our code useful, please consider citing our work:
 @article{mengSIGMA,
   title   = {SIGMA: Signal-Guided Integration Using Gated Residual Contrastive Alignment for Spatial Multi-Omics},
   author  = {Chunyang Meng and Xiang Ao and Anping Xiong and Yi Jiang and Wei Cheng and Yanbing Xiao and Yuansong Zeng and Zheng Wang},
-  journal = {Under Review},
+  journal = {},
   year    = {2026}
 }
 ```
