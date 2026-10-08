@@ -27,6 +27,8 @@ def train_SIGMA(
     device=torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'),
     window_size=20,
     slope=0.0001,
+    additional_stop_window=10,
+    triplet_share_threshold=0.0011,
     Conv_Encoder=SAGEConv_Encoder,
     Conv_Decoder=SAGEConv_Decoder,
     margin=0.5,
@@ -41,6 +43,7 @@ def train_SIGMA(
     contrastive_alpha=0.16,
     contrastive_temperature=0.5,
     alpha=0.05,
+    fusion_mode="gate",
 ):
     """
     Train SIGMA with sample-wise dynamic fusion.
@@ -70,6 +73,11 @@ def train_SIGMA(
         Window size used for early stopping slope detection.
     slope : float, default=0.0001
         Minimum absolute slope threshold for continuing training.
+    additional_stop_window : int, default=20
+        Loss-history window used by the additional stopping rule.
+    triplet_share_threshold : float, default=0.0012
+        Maximum mean triplet-loss share of total loss. The default
+        corresponds to 0.12%.
     Conv_Encoder : class, default=SAGEConv_Encoder
         Graph encoder class.
     Conv_Decoder : class, default=SAGEConv_Decoder
@@ -124,6 +132,7 @@ def train_SIGMA(
         Conv_Encoder=Conv_Encoder,
         Conv_Decoder=Conv_Decoder,
         gate_hidden_dim=gate_hidden_dim,
+        fusion_mode=fusion_mode,
     )
 
     features = [x.to(device) for x in features]
@@ -185,6 +194,24 @@ def train_SIGMA(
                     f"tri_slope={res1.slope:.6f}, rec_slope={res2.slope:.6f}"
                 )
                 break
+        if (
+            epoch >= int(n_epochs * 0.4)
+            and epoch < n_epochs
+            and len(loss_list) >= additional_stop_window
+        ):
+            stop_tail = loss_list[-additional_stop_window:]
+            total_mean = abs(float(np.mean([i[0] for i in stop_tail])))
+            total_scale = max(total_mean, np.finfo(float).eps)
+            triplet_share = (
+                abs(float(np.mean([i[1] for i in stop_tail]))) / total_scale
+            )
+            if triplet_share <= triplet_share_threshold:
+                print(
+                    f"Early stopping at epoch {epoch}: "
+                    f"effective_updates={len(loss_list)}, "
+                    f"triplet_share={triplet_share:.6f}"
+                )
+                break
 
         loss_list.append(
             (
@@ -195,8 +222,11 @@ def train_SIGMA(
                 con_loss.item(),
             )
         )
+        
         loss.backward()
         optimizer.step()
+
+        
 
     return model if not return_loss else (model, loss_list)
 
