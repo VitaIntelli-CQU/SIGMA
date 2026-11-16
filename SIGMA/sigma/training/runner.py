@@ -43,7 +43,6 @@ def train_SIGMA(
     contrastive_alpha=0.16,
     contrastive_temperature=0.5,
     alpha=0.05,
-    fusion_mode="gate",
 ):
     """
     Train SIGMA with sample-wise dynamic fusion.
@@ -132,7 +131,6 @@ def train_SIGMA(
         Conv_Encoder=Conv_Encoder,
         Conv_Decoder=Conv_Decoder,
         gate_hidden_dim=gate_hidden_dim,
-        fusion_mode=fusion_mode,
     )
 
     features = [x.to(device) for x in features]
