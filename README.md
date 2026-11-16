@@ -43,7 +43,7 @@ The data paths used in the tutorials are consistent with the SMART project layou
 | ----------------- | ----------------------------------------------- | -------------- | ------------------------------------------------------------ |
 | `tutorial1.ipynb` | Simulated spatial multi-omics dataset           | RNA, ADT, ATAC | SMART data repository: <https://doi.org/10.5281/zenodo.17093158> |
 | `tutorial2.ipynb` | 10X Visium Human Lymph Node                     | RNA, ADT       | GEO accession GSE263617: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE263617> |
-| `tutorial3.ipynb` | MISAR-seq mouse brain dataset                   | RNA, ATAC      | National Genomics Data Center accession OEP003285: <https://www.biosino.org/node/project/detail/OEP003285> |
+| `tutorial3.ipynb` | MISAR-seq mouse brain dataset                   | RNA, ATAC      | National Omics Data Encyclopedia (NODE), accession OEP003285: <https://www.biosino.org/node/project/detail/OEP003285> |
 | `tutorial4.ipynb` | P22 mouse brain spatial CUT&Tag-RNA-seq dataset | RNA, H3K27me3  | GEO accession GSE205055: <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE205055>; UCSC browser: <https://brain-spatial-omics.cells.ucsc.edu> |
 | `tutorial5.ipynb` | 10X Visium Human Tonsil dataset                 | RNA, ADT       | Zenodo: <https://zenodo.org/records/12654113/preview/data_imputation.zip?include_deleted=0#tree_item0> |
 
